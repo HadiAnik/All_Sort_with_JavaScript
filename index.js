@@ -1,41 +1,23 @@
-// const bubbleSort = arr => {
-//   for(let i=0; i<arr.length; i++) {
-//     for(let j=0; j<arr.length -i -1; j++) { // -i diyar fole iterate kome jabe
-//       console.log('To see: ', arr, arr[j], arr[j+1])
-//       if(arr[j] > arr[j+1]) {
-//         // let temp = arr[j];
-//         // arr[j] = arr[j+1];
-//         // arr[j+1] = temp;
-        
-//         [arr[j], arr[j+1]] = [arr[j+1], arr[j]] //ES6
-//       }
-//     }
-//   }
-//   return arr;
-// }
-
-//optimize
-const bubbleSort = arr => {
-  let isSwap
-  for(let i=0; i<arr.length; i++) {
-    isSwap  = false
-    for(let j=0; j<arr.length -i -1; j++) { // -i diyar fole iterate kome jabe
-      console.log('To see: ', arr, arr[j], arr[j+1])
-      if(arr[j] > arr[j+1]) {
-        let temp = arr[j];
-        arr[j] = arr[j+1];
-        arr[j+1] = temp;
-        
-        // [arr[j], arr[j+1]] = [arr[j+1], arr[j]] //ES6
-        isSwap = true;
+const selectionSot = arr => {
+  for (let i = 0; i < arr.length; i++) {
+    let lowest = i;
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[lowest] > arr[j]) {
+        lowest = j
       }
     }
-    if(!isSwap) break;
+    // [arr[i], arr[lowest]] = [arr[lowest], arr[i]] //not work
+    if (i !== lowest) {
+      console.log('to see: ', arr, i, lowest)
+      let temp = arr[i]
+      arr[i] = arr[lowest]
+      arr[lowest] = temp
+    }
   }
   return arr;
 }
 
 
-// const input = [4, 2, 1, 3]
-const input = [3, 8, 9, 4, 6, 1, 11, 24, 28, 21, -5, -65];
-console.log(bubbleSort(input))
+// const input = [0, 1, -1, 3];
+const input = [3, 8, 9, 4, 6, 1, 11, 24, 28, 21];
+console.log(selectionSot(input))
